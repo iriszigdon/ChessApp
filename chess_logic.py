@@ -141,3 +141,23 @@ class ChessBoard:
             self.grid[r1][c1] = None
             return True
         return False
+
+    def check_winner(self):
+        """סורק את הלוח ובודק האם אחד המלכים חסר"""
+        white_king_exists = False
+        black_king_exists = False
+
+        for r in range(8):
+            for c in range(8):
+                piece = self.grid[r][c]
+                if piece and piece.name == 'K':
+                    if piece.color == 'white':
+                        white_king_exists = True
+                    elif piece.color == 'black':
+                        black_king_exists = True
+
+        if not white_king_exists:
+            return "black"
+        if not black_king_exists:
+            return "white"
+        return None
